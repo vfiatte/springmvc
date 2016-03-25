@@ -44,7 +44,7 @@ public class SpringConfig extends WebMvcConfigurerAdapter{
     }
  
     @Bean
-    public InternalResourceViewResolver jspViewResolver() {
+    public InternalResourceViewResolver jspViewResolver() { //indique a springmvs que toutes les pages se trouves dans WEB-INF/views
         InternalResourceViewResolver bean = new InternalResourceViewResolver();
         bean.setPrefix("/WEB-INF/views/");
         bean.setSuffix(".jsp");

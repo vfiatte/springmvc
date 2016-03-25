@@ -22,7 +22,19 @@ public class Effacemoi implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String Nom;
+    private String Prenom;
 
+    public Effacemoi() {
+    }
+
+    public Effacemoi(Long id, String Nom, String Prenom) {
+        this.id = id;
+        this.Nom = Nom;
+        this.Prenom = Prenom;
+    }
+
+    
     public Long getId() {
         return id;
     }
@@ -31,6 +43,24 @@ public class Effacemoi implements Serializable {
         this.id = id;
     }
 
+    public String getNom() {
+        return Nom;
+    }
+
+    public void setNom(String Nom) {
+        this.Nom = Nom;
+    }
+
+    public String getPrenom() {
+        return Prenom;
+    }
+
+    public void setPrenom(String Prenom) {
+        this.Prenom = Prenom;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
