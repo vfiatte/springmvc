@@ -15,6 +15,7 @@
     <body>
         <h1>Ajouter un Genre</h1>
         <form:form modelAttribute="monGenre" action="ajouterPost" method="post">
+            <form:hidden path="id"/>
             Nom : <form:input path="nom"/>
             <input type="submit"/>
         </form:form>

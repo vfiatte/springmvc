@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import streaming.entity.Film;
@@ -48,5 +49,12 @@ public class GenreController {
     public String ajouterPost(@ModelAttribute(value = "monGenre") Genre g) {
         genreCrudService.save(g);
         return "redirect:/genre/lister";
+    }
+    
+    @RequestMapping(value = "ajouter/{idGenre}", method = RequestMethod.GET)
+    public String modifier(@PathVariable(value = "idGenre") long id) {
+        genreCrudService.findOne(id);
+
+        return "ajouterGenre";
     }
 }

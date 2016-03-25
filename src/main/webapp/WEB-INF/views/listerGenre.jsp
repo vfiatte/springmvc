@@ -15,7 +15,8 @@
     <body>
         <h1>Liste des Genres</h1>
         <c:forEach items="${mesGenres}" var="monGenre"> 
-           ${monGenre.nom} :  ${monGenre.nom} <br>
+           ${monGenre.nom} :  ${monGenre.nom}
+           <a href ="<c:url value="/genre/ajouter"></c:url>/${monGenre.id}" > Modifier </a><br> 
         </c:forEach>
         <br>
         <a href ="<c:url value="/genre/ajouter"></c:url>" > Ajouter </a>
