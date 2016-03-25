@@ -1,6 +1,6 @@
 <%-- 
-    Document   : home
-    Created on : 24 mars 2016, 11:50:55
+    Document   : listerGenre
+    Created on : 25 mars 2016, 11:05:05
     Author     : admin
 --%>
 
@@ -13,8 +13,11 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <a href ="<c:url value="/film/lister"></c:url>" > Liste Films </a> <br>
-        <a href ="<c:url value="/genre/lister"></c:url>" > Liste Genres </a>
+        <h1>Liste des Genres</h1>
+        <c:forEach items="${mesGenres}" var="monGenre"> 
+           ${monGenre.nom} :  ${monGenre.nom} <br>
+        </c:forEach>
+        <br>
+        <a href ="<c:url value="/genre/ajouter"></c:url>" > Ajouter </a>
     </body>
 </html>

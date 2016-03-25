@@ -6,13 +6,21 @@
 package streaming.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
- *
+ *Entité gérant les films FILM
+ * Degueulasse toi meme
  * @author admin
  */
 @Entity
@@ -22,26 +30,56 @@ public class Film implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String titre;
-    private String synopsis;
-    private Long annee;
 
-    public Film(Long id, String titre) {
+    private String titre;
+    private Long annee;
+    private String synopsis;
+    private String url;
+    
+    
+    
+    @ManyToOne
+    @JoinColumn(name = "Pays_Id")
+    private Pays paysFilm;
+    
+    @ManyToOne
+    @JoinColumn(name = "Genre_Id")
+    private Genre genreFilm;
+    
+    @ManyToMany
+    @JoinTable(name = "Film_Realisateur")
+    private List<Realisateur> realisateurFilm = new ArrayList<Realisateur>();
+    
+    @OneToMany(mappedBy = "filmLien")
+    private List<Lien> lienCrees = new ArrayList<Lien>();
+
+    public Film(Long id, String titre, Long annee ) {
         this.id = id;
         this.titre = titre;
+        this.annee = annee;
+
+    }
+    
+    public Film(){
+        
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
     
     
-    public Film() {
+
+    public String getTitre() {
+        return titre;
     }
 
-    public String getSynopsis() {
-        return synopsis;
-    }
-
-    public void setSynopsis(String synopsis) {
-        this.synopsis = synopsis;
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
 
     public Long getAnnee() {
@@ -52,21 +90,50 @@ public class Film implements Serializable {
         this.annee = annee;
     }
 
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    public void setSynopsis(String synopsis) {
+        this.synopsis = synopsis;
+    }
+
+    public Pays getPaysFilm() {
+        return paysFilm;
+    }
+
+    public void setPaysFilm(Pays paysFilm) {
+        this.paysFilm = paysFilm;
+    }
+
+    public Genre getGenreFilm() {
+        return genreFilm;
+    }
+
+    public void setGenreFilm(Genre genreFilm) {
+        this.genreFilm = genreFilm;
+    }
+
+    public List<Realisateur> getRealisateurFilm() {
+        return realisateurFilm;
+    }
+
+    public void setRealisateurFilm(List<Realisateur> realisateurFilm) {
+        this.realisateurFilm = realisateurFilm;
+    }
+
+    public List<Lien> getLienCrees() {
+        return lienCrees;
+    }
+
+    public void setLienCrees(List<Lien> lienCrees) {
+        this.lienCrees = lienCrees;
+    }
     
-    
+
     public Long getId() {
         return id;
     }
-
-    public String getTitre() {
-        return titre;
-    }
-
-    public void setTitre(String titre) {
-        this.titre = titre;
-    }
-    
-    
 
     public void setId(Long id) {
         this.id = id;

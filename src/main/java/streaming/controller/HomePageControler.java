@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author tom
  */
 @Controller
-    
+@RequestMapping(value = "/")    
 public class HomePageControler {
     
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public String effaceMoi(){
         
         System.out.println("Passe par ici");

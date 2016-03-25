@@ -6,38 +6,69 @@
 package streaming.entity;
 
 import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author admin
  */
 @Entity
-public class Utilisateur implements Serializable {
+public class Lien implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String url;
     
-    @Column(unique = true)
-    private String login;
-    private String mdp;
+    @ManyToOne
+    @JoinColumn(name = "Film_Id")
+    private Film filmLien;
+    
+    @ManyToOne
+    @JoinColumn(name = "Episode_Id")
+    private Episode episodeLien;
 
-    public Utilisateur() {
-    }
-
-    public Utilisateur(Long id, String login, String mdp) {
+    public Lien(Long id, String url, Film filmLien, Episode episodeLien) {
         this.id = id;
-        this.login = login;
-        this.mdp = mdp;
+        this.url = url;
     }
 
+        public Lien (){
+            
+        }
+        
     
+    
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Film getFilmLien() {
+        return filmLien;
+    }
+
+    public void setFilmLien(Film filmLien) {
+        this.filmLien = filmLien;
+    }
+
+    public Episode getEpisodeLien() {
+        return episodeLien;
+    }
+
+    public void setEpisodeLien(Episode episodeLien) {
+        this.episodeLien = episodeLien;
+    }
+
     public Long getId() {
         return id;
     }
@@ -45,24 +76,6 @@ public class Utilisateur implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getMdp() {
-        return mdp;
-    }
-
-    public void setMdp(String mdp) {
-        this.mdp = mdp;
-    }
-    
-    
 
     @Override
     public int hashCode() {
@@ -74,10 +87,10 @@ public class Utilisateur implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Utilisateur)) {
+        if (!(object instanceof Lien)) {
             return false;
         }
-        Utilisateur other = (Utilisateur) object;
+        Lien other = (Lien) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -86,7 +99,7 @@ public class Utilisateur implements Serializable {
 
     @Override
     public String toString() {
-        return "streaming.entity.Utilisateur[ id=" + id + " ]";
+        return "streaming.entity.Lien[ id=" + id + " ]";
     }
     
 }

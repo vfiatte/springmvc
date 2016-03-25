@@ -8,7 +8,6 @@ package streaming.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,42 +21,40 @@ import javax.persistence.OneToMany;
  * @author admin
  */
 @Entity
-public class Serie implements Serializable {
+public class Episode implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private int numEpisode;
     private String titre;
-    private String sysnopsis;
-    private Long annee;
-    
-    @OneToMany(mappedBy = "serieSaison",cascade = CascadeType.PERSIST)
-    private List<Saison> saisonsCrees = new ArrayList<Saison>();
+
+    @OneToMany ( mappedBy = "episodeLien")
+    private List<Lien> lienCrees = new ArrayList<Lien>();
     
     @ManyToOne
-    @JoinColumn(name = "Pays_Id")
-    private Pays paysSerie;
+    @JoinColumn(name= "Saison_Id")
+    private Saison episodeSaison;
 
-    public Serie(Long id, String titre) {
+    public Episode(Long id, int numEpisode, String titre) {
         this.id = id;
+        this.numEpisode = numEpisode;
         this.titre = titre;
-     
     }
 
-    public Serie(){
+    public Episode(){
         
     }
-
-    public Long getAnnee() {
-        return annee;
+    
+    public int getNumEpisode() {
+        return numEpisode;
     }
 
-    public void setAnnee(Long annee) {
-        this.annee = annee;
+    public void setNumEpisode(int numEpisode) {
+        this.numEpisode = numEpisode;
     }
-    
-    
+
     public String getTitre() {
         return titre;
     }
@@ -66,35 +63,22 @@ public class Serie implements Serializable {
         this.titre = titre;
     }
 
-    public String getSysnopsis() {
-        return sysnopsis;
+    public List<Lien> getLienCrees() {
+        return lienCrees;
     }
 
-    public void setSysnopsis(String sysnopsis) {
-        this.sysnopsis = sysnopsis;
+    public void setLienCrees(List<Lien> lienCrees) {
+        this.lienCrees = lienCrees;
     }
 
+    public Saison getEpisodeSaison() {
+        return episodeSaison;
+    }
 
+    public void setEpisodeSaison(Saison episodeSaison) {
+        this.episodeSaison = episodeSaison;
+    }
     
-
-    public List<Saison> getSaisonsCrees() {
-        return saisonsCrees;
-    }
-
-    public void setSaisonsCrees(List<Saison> saisonsCrees) {
-        this.saisonsCrees = saisonsCrees;
-    }
-
-    public Pays getPaysSerie() {
-        return paysSerie;
-    }
-
-    public void setPaysSerie(Pays paysSerie) {
-        this.paysSerie = paysSerie;
-    }
- 
-    
-
     public Long getId() {
         return id;
     }
@@ -113,10 +97,10 @@ public class Serie implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Serie)) {
+        if (!(object instanceof Episode)) {
             return false;
         }
-        Serie other = (Serie) object;
+        Episode other = (Episode) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -125,7 +109,7 @@ public class Serie implements Serializable {
 
     @Override
     public String toString() {
-        return "streaming.entity.Serie[ id=" + id + " ]";
+        return "streaming.entity.Episode[ id=" + id + " ]";
     }
     
 }

@@ -5,16 +5,13 @@
  */
 package streaming.service;
 
-import java.util.List;
 import org.springframework.data.repository.CrudRepository;
-import streaming.entity.Utilisateur;
+import streaming.entity.Realisateur;
 
 /**
  *
  * @author admin
  */
-public interface UtilisateurService extends CrudRepository<Utilisateur, Long>{
+public interface RealisateurCrudService extends CrudRepository<Realisateur, Long>{
     
-    public Utilisateur findOneByLogin(String s);
-    public List<Utilisateur> findByMdp(String s);
 }
