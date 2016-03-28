@@ -61,19 +61,20 @@ public class GenreController {
     }
 
     @RequestMapping(value = "modifierPost", method = RequestMethod.GET)
-    public String modifierPost(@ModelAttribute(value = "monGenre") Genre g, Model model) {
-        long id1 = g.getId();
-        Genre g1 = genreCrudService.findOne(id1);
+    public String modifierPost(@PathVariable(value = "idGenre") long id, Model model) {
+        Genre g = genreCrudService.findOne(id);
+//        long id1 = id;
         genreCrudService.delete(g);
-        model.addAttribute("monGenre", new Genre());
-        g.setId(id1);
-        genreCrudService.save(g);
+//        Genre g2 = new Genre();
+//        model.addAttribute("monGenre", g2);
+//        g2.setId(id1);
+//        genreCrudService.save(g2);
 
         return "redirect:/genre/lister";
     }
 
     @RequestMapping(value = "supprimer/{idGenre}", method = RequestMethod.GET)
-    public String modifierPost(@PathVariable(value = "idGenre") long id) {
+    public String supprimer(@PathVariable(value = "idGenre") long id) {
         Genre g = genreCrudService.findOne(id);
         genreCrudService.delete(g);
 
