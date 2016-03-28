@@ -13,8 +13,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Ajouter un Genre</h1>
-        <form:form modelAttribute="monGenre" action="ajouterPost" method="get">
+        <h1>Ajouter un Pays</h1>
+        <form:form modelAttribute="monPays" action="ajouterPost" method="get">
             <%--<form:hidden path="id"/>--%>
             Nom : <form:input path="nom"/>
             <input type="submit"/>

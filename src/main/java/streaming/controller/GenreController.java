@@ -23,10 +23,10 @@ import streaming.service.GenreCrudService;
 @Controller
 @RequestMapping(value = "/genre")
 public class GenreController {
-    
+
     @Autowired
     GenreCrudService genreCrudService;
-    
+
     @RequestMapping(value = "lister", method = RequestMethod.GET)
     public String lister(Model model) {
 
@@ -36,25 +36,47 @@ public class GenreController {
 
         return "listerGenre";
     }
-    
+
     @RequestMapping(value = "ajouter", method = RequestMethod.GET)
     public String ajouter(Model model) {
-        
+
         model.addAttribute("monGenre", new Genre());
 
         return "ajouterGenre";
     }
-    
-    @RequestMapping(value = "ajouterPost", method = RequestMethod.POST)
+
+    @RequestMapping(value = "ajouterPost", method = RequestMethod.GET)
     public String ajouterPost(@ModelAttribute(value = "monGenre") Genre g) {
         genreCrudService.save(g);
         return "redirect:/genre/lister";
     }
-    
-    @RequestMapping(value = "ajouter/{idGenre}", method = RequestMethod.GET)
-    public String modifier(@PathVariable(value = "idGenre") long id) {
-        genreCrudService.findOne(id);
 
-        return "ajouterGenre";
+    @RequestMapping(value = "modifier/{idGenre}", method = RequestMethod.GET)
+    public String modifier(@PathVariable(value = "idGenre") long id, Model model) {
+        System.out.print(id);
+        Genre g = genreCrudService.findOne(id);
+        model.addAttribute("monGenre", g);
+
+        return "modifierGenre";
+    }
+
+    @RequestMapping(value = "modifierPost", method = RequestMethod.GET)
+    public String modifierPost(@ModelAttribute(value = "monGenre") Genre g, Model model) {
+        long id1 = g.getId();
+        Genre g1 = genreCrudService.findOne(id1);
+        genreCrudService.delete(g);
+        model.addAttribute("monGenre", new Genre());
+        g.setId(id1);
+        genreCrudService.save(g);
+
+        return "redirect:/genre/lister";
+    }
+
+    @RequestMapping(value = "supprimer/{idGenre}", method = RequestMethod.GET)
+    public String modifierPost(@PathVariable(value = "idGenre") long id) {
+        Genre g = genreCrudService.findOne(id);
+        genreCrudService.delete(g);
+
+        return "redirect:/genre/lister";
     }
 }

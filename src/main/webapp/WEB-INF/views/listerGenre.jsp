@@ -14,10 +14,39 @@
     </head>
     <body>
         <h1>Liste des Genres</h1>
-        <c:forEach items="${mesGenres}" var="monGenre"> 
-           ${monGenre.nom} :  ${monGenre.nom}
-           <a href ="<c:url value="/genre/ajouter"></c:url>/${monGenre.id}" > Modifier </a><br> 
-        </c:forEach>
+        <table>
+            <thead>
+                <tr>
+                    <td>
+                        Numero
+                    </td>
+                    <td>
+                        Titre
+                    </td>
+                    <td colspan="2">
+                        Actions
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${mesGenres}" var="monGenre"> 
+                <tr>
+                    <td>
+                        ${monGenre.id}
+                    </td>
+                    <td>
+                        ${monGenre.nom}
+                    </td>
+                    <td>
+                        <a href ="<c:url value="/genre/modifier"></c:url>/${monGenre.id}" > Modifier </a>
+                    </td>
+                    <td>
+                        <a href ="<c:url value="/genre/supprimer"></c:url>/${monGenre.id}" > Supprimer </a><br>
+                    </td>
+                </tr>
+                </c:forEach>
+            </tbody>
+        </table>
         <br>
         <a href ="<c:url value="/genre/ajouter"></c:url>" > Ajouter </a>
     </body>

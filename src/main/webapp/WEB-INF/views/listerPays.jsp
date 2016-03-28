@@ -1,6 +1,6 @@
 <%-- 
-    Document   : listerFilm
-    Created on : 25 mars 2016, 10:41:47
+    Document   : listerGenre
+    Created on : 25 mars 2016, 11:05:05
     Author     : admin
 --%>
 
@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Liste de vos films</h1>
+        <h1>Liste des Pays</h1>
         <table>
             <thead>
                 <tr>
@@ -21,7 +21,7 @@
                         Numero
                     </td>
                     <td>
-                        Titre
+                        Nom
                     </td>
                     <td colspan="2">
                         Actions
@@ -29,27 +29,26 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach items="${mesFilms}" var="monFilm"> 
+                <c:forEach items="${mesPays}" var="monPays"> 
                 <tr>
                     <td>
-                        ${monFilm.id}
+                        ${monPays.id}
                     </td>
                     <td>
-                        ${monFilm.titre} 
+                        ${monPays.nom}
                     </td>
                     <td>
-                        <a href="<c:url value = "/film/modifier"></c:url>/${monfilm.id}">Modifier</a> <br>
+                        <a href ="<c:url value="/pays/modifier"></c:url>/${monPays.id}" > Modifier </a>
                     </td>
                     <td>
-                        <a href ="<c:url value="/film/supprimer"></c:url>/${monFilm.id}" > Supprimer </a><br>
+                        <a href ="<c:url value="/pays/supprimer"></c:url>/${monPays.id}" > Supprimer </a><br>
                     </td>
                 </tr>
                 </c:forEach>
             </tbody>
         </table>
-        <h1></h1>
-        
-            
-            <a href ="<c:url value="/film/ajouter"></c:url>" > Ajouter </a>
+        <br>
+        <a href ="<c:url value="/pays/ajouter"></c:url>" > Ajouter </a>
     </body>
 </html>
+

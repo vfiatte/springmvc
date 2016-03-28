@@ -15,6 +15,7 @@
     <body>
         <h1>Hello World!</h1>
         <a href ="<c:url value="/film/lister"></c:url>" > Liste Films </a> <br>
-        <a href ="<c:url value="/genre/lister"></c:url>" > Liste Genres </a>
+        <a href ="<c:url value="/genre/lister"></c:url>" > Liste Genres </a> <br>
+        <a href ="<c:url value="/pays/lister"></c:url>" > Liste Pays </a>
     </body>
 </html>

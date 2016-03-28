@@ -14,7 +14,7 @@
     </head>
     <body>
         <h1>Ajouter un Genre</h1>
-        <form:form modelAttribute="monGenre" action="ajouterPost" method="get">
+        <form:form modelAttribute="monGenre" action="modifierPost" method="get">
             <%--<form:hidden path="id"/>--%>
             Nom : <form:input path="nom"/>
             <input type="submit"/>
