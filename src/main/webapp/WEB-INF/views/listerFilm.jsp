@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,14 +15,20 @@
     </head>
     <body>
         <h1>Liste de vos films</h1>
-        <table>
+        <table class="body">
             <thead>
                 <tr>
                     <td>
-                        Numero
+                        Annee
                     </td>
                     <td>
                         Titre
+                    </td>
+                    <td>
+                        Pays
+                    </td>
+                    <td>
+                        Genre
                     </td>
                     <td colspan="2">
                         Actions
@@ -29,20 +36,29 @@
                 </tr>
             </thead>
             <tbody>
+                
                 <c:forEach items="${mesFilms}" var="monFilm"> 
-                <tr>
+                    
+                    <tr>
                     <td>
-                        ${monFilm.id}
+                        ${monFilm.annee}
                     </td>
                     <td>
                         ${monFilm.titre} 
                     </td>
                     <td>
-                        <a href="<c:url value = "/film/modifier"></c:url>/${monfilm.id}">Modifier</a> <br>
+                        ${monFilm.paysFilm.nom} 
                     </td>
                     <td>
-                        <a href ="<c:url value="/film/supprimer"></c:url>/${monFilm.id}" > Supprimer </a><br>
+                        ${monFilm.genreFilm.nom} 
                     </td>
+                    <td>
+                        <input type="button" onclick ="modifierFilm(${monFilm.id})" value="Modifier"/>
+                    </td>
+                    <td>
+                        <input type="button" onclick ="supprimerFilm(${monFilm.id})" value="Supprimer"/><br>
+                    </td>
+                    
                 </tr>
                 </c:forEach>
             </tbody>
@@ -50,6 +66,7 @@
         <h1></h1>
         
             
-            <a href ="<c:url value="/film/ajouter"></c:url>" > Ajouter </a>
+            <input type="button" onclick ="ajouterFilm()" value="Ajouter"/>
+            <input type="button" onclick ="init()" value="Home"/>
     </body>
 </html>

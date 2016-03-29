@@ -45,7 +45,7 @@ public class GenreController {
         return "ajouterGenre";
     }
 
-    @RequestMapping(value = "ajouterPost", method = RequestMethod.GET)
+    @RequestMapping(value = "ajouterPost", method = RequestMethod.POST)
     public String ajouterPost(@ModelAttribute(value = "monGenre") Genre g) {
         genreCrudService.save(g);
         return "redirect:/genre/lister";
@@ -60,15 +60,10 @@ public class GenreController {
         return "modifierGenre";
     }
 
-    @RequestMapping(value = "modifierPost", method = RequestMethod.GET)
-    public String modifierPost(@PathVariable(value = "idGenre") long id, Model model) {
-        Genre g = genreCrudService.findOne(id);
-//        long id1 = id;
-        genreCrudService.delete(g);
-//        Genre g2 = new Genre();
-//        model.addAttribute("monGenre", g2);
-//        g2.setId(id1);
-//        genreCrudService.save(g2);
+    @RequestMapping(value = "modifierPost", method = RequestMethod.POST)
+    public String modifierPost(@ModelAttribute(value = "monGenre") Genre g) {
+        
+        genreCrudService.save(g);
 
         return "redirect:/genre/lister";
     }

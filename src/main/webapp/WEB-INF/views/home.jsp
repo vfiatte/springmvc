@@ -11,11 +11,18 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <script src="<c:url value = "/resources/js/jquery-2.2.2.js"/>" type="text/javascript"></script>
+        <script src="<c:url value = "/resources/js/FonctionsJS.js"/>" type="text/javascript"></script>
+        <link href="<c:url value = "/resources/CSS/style.css"/>" rel="stylesheet" type="text/css"/>
     </head>
-    <body>
-        <h1>Hello World!</h1>
-        <a href ="<c:url value="/film/lister"></c:url>" > Liste Films </a> <br>
-        <a href ="<c:url value="/genre/lister"></c:url>" > Liste Genres </a> <br>
-        <a href ="<c:url value="/pays/lister"></c:url>" > Liste Pays </a>
+    <body onload="init()">
+        <div class ="menu">
+
+        </div>
+        <div class ="contenu">
+        </div><br>
+        <div class ="pied">
+        </div>
+
     </body>
 </html>

@@ -32,7 +32,7 @@ public class FilmController {
 
     @Autowired
     GenreCrudService genreCrudService;
-    
+
     @Autowired
     PaysCrudService paysCrudService;
 
@@ -52,7 +52,7 @@ public class FilmController {
         Iterable<Genre> listeGenre = genreCrudService.findAll();
 
         model.addAttribute("mesGenres", listeGenre);
-        
+
         Iterable<Pays> listePays = paysCrudService.findAll();
 
         model.addAttribute("mesPays", listePays);
@@ -62,14 +62,37 @@ public class FilmController {
         return "ajouterFilm";
     }
 
-    @RequestMapping(value = "ajouterPost", method = RequestMethod.GET)
+    @RequestMapping(value = "ajouterPost", method = RequestMethod.POST)
     public String ajouterPost(@ModelAttribute(value = "monFilm") Film f) {
         filmCrudService.save(f);
         return "redirect:/film/lister";
     }
 
+    @RequestMapping(value = "modifier/{idFilm}", method = RequestMethod.GET)
+    public String modifier(@PathVariable(value = "idFilm") long id, Model model) {
+        System.out.print(id);
+        Film f = filmCrudService.findOne(id);
+        model.addAttribute("monFilm", f);
+        Iterable<Genre> listeGenre = genreCrudService.findAll();
+
+        model.addAttribute("mesGenres", listeGenre);
+
+        Iterable<Pays> listePays = paysCrudService.findAll();
+
+        model.addAttribute("mesPays", listePays);
+
+        return "modifierFilm";
+    }
+
+    @RequestMapping(value = "modifierPost", method = RequestMethod.POST)
+    public String modifierPost(@ModelAttribute(value = "monFilm") Film f) {
+        filmCrudService.save(f);
+        return "redirect:/film/lister";
+    }
+
     @RequestMapping(value = "supprimer/{idFilm}", method = RequestMethod.GET)
-    public String modifierPost(@PathVariable(value = "idFilm") long id) {
+    public String supprimer(@PathVariable(value = "idFilm") long id) {
+        System.out.println("ffezfzefezfzefzefezfezfezfezf");
         Film f = filmCrudService.findOne(id);
         filmCrudService.delete(f);
 

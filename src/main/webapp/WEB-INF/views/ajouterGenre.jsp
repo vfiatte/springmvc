@@ -14,10 +14,10 @@
     </head>
     <body>
         <h1>Ajouter un Genre</h1>
-        <form:form modelAttribute="monGenre" action="ajouterPost" method="get">
-            <%--<form:hidden path="id"/>--%>
+        <form:form modelAttribute="monGenre" id="form" action="ajouterPost" method="post">
             Nom : <form:input path="nom"/>
-            <input type="submit"/>
+            <input type="button" value="Ajouter" onclick="ajouterGenrePost()"/>
         </form:form>
+            <input type="button" onclick ="init()" value="Home"/>
     </body>
 </html>

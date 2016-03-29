@@ -49,6 +49,7 @@
         </table>
         <br>
         <a href ="<c:url value="/pays/ajouter"></c:url>" > Ajouter </a>
+        <a href ="<c:url value="/"></c:url>" > HomePage </a>
     </body>
 </html>
 

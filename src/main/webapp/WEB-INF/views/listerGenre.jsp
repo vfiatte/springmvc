@@ -14,7 +14,7 @@
     </head>
     <body>
         <h1>Liste des Genres</h1>
-        <table>
+        <table class="body">
             <thead>
                 <tr>
                     <td>
@@ -38,16 +38,17 @@
                         ${monGenre.nom}
                     </td>
                     <td>
-                        <a href ="<c:url value="/genre/modifier"></c:url>/${monGenre.id}" > Modifier </a>
+                        <input type="button" onclick ="modifierGenre(${monGenre.id})" value="Modifier"/>
                     </td>
                     <td>
-                        <a href ="<c:url value="/genre/supprimer"></c:url>/${monGenre.id}" > Supprimer </a><br>
+                        <input type="button" onclick ="supprimerGenre(${monGenre.id})" value="Supprimer"/>
                     </td>
                 </tr>
                 </c:forEach>
             </tbody>
         </table>
         <br>
-        <a href ="<c:url value="/genre/ajouter"></c:url>" > Ajouter </a>
+        <input type="button" onclick ="ajouterGenre()" value="Ajouter"/>
+        <input type="button" onclick ="init()" value="Home"/>
     </body>
 </html>

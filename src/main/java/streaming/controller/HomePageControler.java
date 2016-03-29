@@ -17,11 +17,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/")    
 public class HomePageControler {
     
+    
+   
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String effaceMoi(){
-        
-        System.out.println("Passe par ici");
-        
+    public String home(){
         return "home";
     }
+    
+    @RequestMapping(value = "accueilContenu", method = RequestMethod.GET)
+    public String contenu(){
+        return "_accueilContenu";
+    }
+    
+     @RequestMapping(value = "menu", method = RequestMethod.GET)
+    public String menu(){
+        return "_menu";
+    }
+    @RequestMapping(value = "pied", method = RequestMethod.GET)
+    public String pied(){
+        return "_pied";
+    }
+    
+   
 }

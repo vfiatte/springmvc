@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ajouterFilm
-    Created on : 25 mars 2016, 11:35:55
+    Document   : ajouterGenre
+    Created on : 25 mars 2016, 11:11:41
     Author     : admin
 --%>
 
@@ -13,8 +13,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Ajouter un Film!</h1>
-        <form:form modelAttribute="monFilm" id="form" action="film/ajouter" method="post">
+        <h1>Modifier un Film</h1>
+        <form:form modelAttribute="monFilm" id="form" action="film/modifierPost/${monFilm.id}" method="post">
+            <form:hidden path="id"/>
             Titre : <form:input path="titre"/>
             Annee : <form:input path="annee"/>
             Synopsis : <form:input path="synopsis"/>
@@ -24,8 +25,7 @@
             Genre : <form:select path="genreFilm.id">
                 <form:options items="${mesGenres}" itemLabel="nom" itemValue="id"></form:options>
             </form:select>
-            <input type="button" value="Ajouter" onclick="ajouterFilmPost()"/>
+            <input type="button" value="Modifier" onclick="modifierFilmPost()"/>
         </form:form>
-           
     </body>
 </html>
